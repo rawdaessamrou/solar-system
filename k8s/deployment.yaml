@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solar-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: solar-system
+  template:
+    metadata:
+      labels:
+        app: solar-system
+    spec:
+      containers:
+      - name: solar-system
+        image: 781978598486.dkr.ecr.us-east-1.amazonaws.com/solar-system:latest
+        ports:
+        - containerPort: 3000
