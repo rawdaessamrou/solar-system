@@ -65,8 +65,17 @@ jobs:
 
       - name: Force clean deploy
         run: |
+          # Force delete all solar-system pods and deployment
           kubectl delete deployment solar-system --ignore-not-found=true
-          sleep 15
+          kubectl delete pods -l app=solar-system --force --grace-period=0 || true
+
+          # Wait for all pods to be fully gone
+          kubectl wait pod \
+            -l app=solar-system \
+            --for=delete \
+            --timeout=60s || true
+
+          # Apply fresh
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
 
