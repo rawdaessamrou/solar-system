@@ -89,7 +89,7 @@ jobs:
       - name: Set env vars
         run: |
           kubectl set env deployment/solar-system \
-            MONGO_URI="mongodb://superuser:SuperPassword@mongodb-svc:27017/solarSystem?authSource=admin" \
+            MONGO_URI="mongodb+srv://supercluster.d83jj.mongodb.net/superData" \
             MONGO_USERNAME="superuser" \
             MONGO_PASSWORD="SuperPassword"
 
