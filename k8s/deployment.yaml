@@ -4,6 +4,8 @@ metadata:
   name: solar-system
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: solar-system
@@ -17,3 +19,17 @@ spec:
         image: 781978598486.dkr.ecr.us-east-1.amazonaws.com/solar-system:latest
         ports:
         - containerPort: 3000
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+        env:
+        - name: MONGO_URI
+          value: "mongodb://superuser:SuperPassword@mongodb-svc:27017/solarSystem?authSource=admin"
+        - name: MONGO_USERNAME
+          value: "superuser"
+        - name: MONGO_PASSWORD
+          value: "SuperPassword"
