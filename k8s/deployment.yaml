@@ -28,7 +28,7 @@ spec:
             memory: "256Mi"
         env:
         - name: MONGO_URI
-          value: "mongodb://superuser:SuperPassword@mongodb-svc:27017/solarSystem?authSource=admin"
+          value: "mongodb+srv://supercluster.d83jj.mongodb.net/superData"
         - name: MONGO_USERNAME
           value: "superuser"
         - name: MONGO_PASSWORD
